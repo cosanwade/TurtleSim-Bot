@@ -116,7 +116,7 @@ def move_circle(sec , speed, rot):
 	vel_msg.angular.z = float(rot)
 	t0 = rospy.Time.now().to_sec()
 	#Move Robot in circle
-	#while not rospy.is_shutdown():
+
 	t1 = rospy.Time.now().to_sec()
 	while(t1-t0 <= float(sec)):
 		pub.publish(vel_msg)
@@ -127,14 +127,11 @@ def move_circle(sec , speed, rot):
 	pub.publish(vel_msg)	
 
 def move_circle_server():
-	#rospy.init_node('move_circle_server')
+
 	s = rospy.Service( 'move_circle', MoveCircle, handle_move_circle )
 	rospy.spin()
     
 def drawA():
-	#rospy.init_node('robot_cleaner', anonymous=True)
-	#velocity_publisher = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
-    #vel_msg = Twist()
 	rotate(70, 0)
 	moveToTarget(4, 1)
 	rotate(130, 1)
@@ -184,24 +181,19 @@ if __name__ == '__main__':
 		rospy.init_node('robot_cleaner', anonymous=True)
 		clear = rospy.ServiceProxy('/clear', Empty)
 		killTurtle = rospy.ServiceProxy('/kill', Kill)
-        #Testing our function
-        #x = turtlebot()
-        #x.move2goal()
-		#drawZ()
-		#drawA()
-		#rotate()
+        
 		val = input('bir harf giriniz(A,B,C,G,Z):')
-		if val == 1:
+		if val == 'A':
 			drawA()
-		elif val == "B":
+		elif val == 'B':
 			drawB()
-		elif val == "C":
+		elif val == 'C':
 			drawC()
 		elif val == 'G':
 			drawG()
 		elif val == 'Z':
 			drawZ()
-		elif val == ".":
+		elif val == '.':
 			sys.exit()
 		else:
 			print "yanlis harf"
